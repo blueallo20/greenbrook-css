@@ -1,0 +1,18 @@
+/* GREENBROOK — CLICK-TO-OPEN TERRITORY ACCORDIONS
+   This file must be served as a real stylesheet (text/css).
+   Lioden territory description loads it with a <link rel="stylesheet">.
+   No JavaScript, no hover behavior, no animation. */
+#gb-greenbrook, #gb-greenbrook * {box-sizing:border-box;}
+#gb-greenbrook .gb-toggle {display:block; text-decoration:none !important; cursor:pointer;}
+#gb-greenbrook .gb-toggle:hover, #gb-greenbrook .gb-toggle:focus {color:#304829 !important;}
+/* Closed by default: only the heading and instructions remain visible. */
+#gb-greenbrook .gb-accordion .gb-reveal {display:none !important;}
+/* Clicking a heading changes URL hash to that section, revealing its contents. */
+#gb-greenbrook .gb-accordion:target .gb-reveal {display:block !important;}
+#gb-greenbrook .gb-accordion:target {border-left-color:#789467 !important;}
+#gb-greenbrook .gb-close {display:inline-block;text-decoration:none !important;color:#546d44 !important;border-bottom:1px dotted #99a789;}
+#gb-greenbrook .gb-close:hover {color:#304829 !important;}
+#gb-greenbrook .gb-link {color:#405733 !important;text-decoration:underline !important;text-decoration-color:#abbaa1 !important;}
+#gb-greenbrook .gb-link:hover {color:#254424 !important;}
+/* Print the entire page clearly. */
+@media print {#gb-greenbrook .gb-accordion .gb-reveal {display:block !important;}}
