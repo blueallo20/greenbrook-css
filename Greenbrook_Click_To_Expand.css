@@ -1,18 +1,34 @@
-/* GREENBROOK — CLICK-TO-OPEN TERRITORY ACCORDIONS
-   This file must be served as a real stylesheet (text/css).
-   Lioden territory description loads it with a <link rel="stylesheet">.
-   No JavaScript, no hover behavior, no animation. */
-#gb-greenbrook, #gb-greenbrook * {box-sizing:border-box;}
-#gb-greenbrook .gb-toggle {display:block; text-decoration:none !important; cursor:pointer;}
-#gb-greenbrook .gb-toggle:hover, #gb-greenbrook .gb-toggle:focus {color:#304829 !important;}
-/* Closed by default: only the heading and instructions remain visible. */
-#gb-greenbrook .gb-accordion .gb-reveal {display:none !important;}
-/* Clicking a heading changes URL hash to that section, revealing its contents. */
-#gb-greenbrook .gb-accordion:target .gb-reveal {display:block !important;}
-#gb-greenbrook .gb-accordion:target {border-left-color:#789467 !important;}
-#gb-greenbrook .gb-close {display:inline-block;text-decoration:none !important;color:#546d44 !important;border-bottom:1px dotted #99a789;}
-#gb-greenbrook .gb-close:hover {color:#304829 !important;}
-#gb-greenbrook .gb-link {color:#405733 !important;text-decoration:underline !important;text-decoration-color:#abbaa1 !important;}
-#gb-greenbrook .gb-link:hover {color:#254424 !important;}
-/* Print the entire page clearly. */
-@media print {#gb-greenbrook .gb-accordion .gb-reveal {display:block !important;}}
+/* GREENBROOK — CORRECTED CLICK-TO-EXPAND SECTIONS
+   Version 2: uses class selectors instead of relying on a wrapper ID.
+   Keep this in Greenbrook_Click_To_Expand.css on GitHub Pages.
+   No JavaScript required.
+*/
+.gb-territory, .gb-territory * {box-sizing:border-box;}
+.gb-panel.gb-accordion .gb-toggle {
+  display:block;
+  text-decoration:none !important;
+  cursor:pointer;
+}
+/* The arrow also confirms that this CSS is loading on Lioden. */
+.gb-panel.gb-accordion .gb-toggle::after {
+  content:"  ▸";
+  font-size:14px;
+  color:#789467;
+}
+.gb-panel.gb-accordion .gb-toggle:focus {color:#304829 !important;}
+/* Start CLOSED; inline HTML styles must not override this. */
+.gb-panel.gb-accordion .gb-reveal {display:none !important;}
+/* Hash link opens the targeted panel. Focusing its heading is a mobile fallback. */
+.gb-panel.gb-accordion:target .gb-reveal,
+.gb-panel.gb-accordion:has(.gb-toggle:focus) .gb-reveal {display:block !important;}
+.gb-panel.gb-accordion:target .gb-toggle::after,
+.gb-panel.gb-accordion:has(.gb-toggle:focus) .gb-toggle::after {content:"  ▾";}
+.gb-panel.gb-accordion:target {border-left-color:#789467 !important;}
+.gb-panel.gb-accordion .gb-close {
+  display:inline-block;
+  text-decoration:none !important;
+  color:#546d44 !important;
+  border-bottom:1px dotted #99a789;
+}
+.gb-panel.gb-accordion .gb-link {color:#405733 !important;text-decoration:underline !important;}
+@media print {.gb-panel.gb-accordion .gb-reveal {display:block !important;}}
