@@ -1,34 +1,66 @@
-/* GREENBROOK — CORRECTED CLICK-TO-EXPAND SECTIONS
-   Version 2: uses class selectors instead of relying on a wrapper ID.
-   Keep this in Greenbrook_Click_To_Expand.css on GitHub Pages.
-   No JavaScript required.
+/* GREENBROOK — STONEHEART-STYLE HOVER CARDS — V3
+   Modeled on Zeoran's tested hover/tap containers.
+   No :target, :has(), hash links, JavaScript, or Return links.
+   The 'Explore Greenbrook' legend is injected by CSS to confirm
+   that Lioden has loaded this stylesheet.
 */
-.gb-territory, .gb-territory * {box-sizing:border-box;}
-.gb-panel.gb-accordion .gb-toggle {
+.gb-territory, .gb-territory * { box-sizing: border-box; }
+.gb-hover-grid {
+  display:grid !important;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:12px;
+  align-items:start;
+  margin:14px 0 18px;
+}
+.gb-hover-grid::before {
+  content:"✦ Explore Greenbrook — tap or hover over a card";
   display:block;
-  text-decoration:none !important;
-  cursor:pointer;
-}
-/* The arrow also confirms that this CSS is loading on Lioden. */
-.gb-panel.gb-accordion .gb-toggle::after {
-  content:"  ▸";
+  grid-column:1 / -1;
+  text-align:center;
   font-size:14px;
-  color:#789467;
+  font-style:italic;
+  color:#607250;
+  padding:4px 0;
 }
-.gb-panel.gb-accordion .gb-toggle:focus {color:#304829 !important;}
-/* Start CLOSED; inline HTML styles must not override this. */
-.gb-panel.gb-accordion .gb-reveal {display:none !important;}
-/* Hash link opens the targeted panel. Focusing its heading is a mobile fallback. */
-.gb-panel.gb-accordion:target .gb-reveal,
-.gb-panel.gb-accordion:has(.gb-toggle:focus) .gb-reveal {display:block !important;}
-.gb-panel.gb-accordion:target .gb-toggle::after,
-.gb-panel.gb-accordion:has(.gb-toggle:focus) .gb-toggle::after {content:"  ▾";}
-.gb-panel.gb-accordion:target {border-left-color:#789467 !important;}
-.gb-panel.gb-accordion .gb-close {
-  display:inline-block;
-  text-decoration:none !important;
-  color:#546d44 !important;
-  border-bottom:1px dotted #99a789;
+.gb-hoverbox {
+  display:block;
+  min-width:0;
+  position:relative;
+  background:#fffdf7;
+  border:1px solid #d8c9a8;
+  border-left:4px solid #8ba17d;
+  border-radius:5px;
+  padding:13px 15px;
+  cursor:pointer;
+  outline-offset:2px;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
 }
-.gb-panel.gb-accordion .gb-link {color:#405733 !important;text-decoration:underline !important;}
-@media print {.gb-panel.gb-accordion .gb-reveal {display:block !important;}}
+.gb-hoverbox:hover,
+.gb-hoverbox:focus,
+.gb-hoverbox:focus-within {
+  border-left-color:#405733;
+  box-shadow:0 3px 12px rgba(60,75,46,.12);
+}
+.gb-hover-title { display:block;font-size:19px;font-weight:bold;color:#405733;line-height:1.25; }
+.gb-hover-title::after { content:"  ▸"; color:#75896a; font-size:14px; }
+.gb-hoverbox:hover .gb-hover-title::after,
+.gb-hoverbox:focus .gb-hover-title::after,
+.gb-hoverbox:focus-within .gb-hover-title::after { content:"  ▾"; }
+.gb-hover-hint {display:block; font-size:14px; font-style:italic; color:#786c58; margin:3px 0 0;}
+.gb-hover-body {display:none !important;}
+.gb-hoverbox:hover .gb-hover-body,
+.gb-hoverbox:focus .gb-hover-body,
+.gb-hoverbox:focus-within .gb-hover-body {
+  display:block !important;
+  margin-top:11px;
+  border-top:1px solid #e0d8c6;
+  padding:11px 3px 3px;
+  max-height:390px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+}
+.gb-hover-body a {color:#405733 !important; text-decoration:underline;}
+@media (max-width:700px) { .gb-hover-grid {grid-template-columns:1fr;} }
+@media print { .gb-hover-body { display:block !important; max-height:none !important; overflow:visible !important; } }
