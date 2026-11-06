@@ -13,7 +13,7 @@
   margin:14px 0 18px;
 }
 .gb-hover-grid::before {
-  content:"✦ Explore Greenbrook — tap or hover over a card";
+  content:"♡ Explore Greenbrook — tap or hover over a card";
   display:block;
   grid-column:1 / -1;
   text-align:center;
